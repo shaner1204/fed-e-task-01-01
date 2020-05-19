@@ -21,16 +21,16 @@
 // 4、请详细说明var、let、const三种声明变量的方式之间的具体差别
 
 // 5、最终运行结果——【20】
-var a = 10
-var obj = {
-    a: 20,
-    fn () {
-        setTimeout (() => {
-            console.log(this.a)
-        })
-    }
-}
-obj.fn()
+// var a = 10
+// var obj = {
+//     a: 20,
+//     fn () {
+//         setTimeout (() => {
+//             console.log(this.a)
+//         })
+//     }
+// }
+// obj.fn()
 
 // 6、简述Symbol类型的用途
 
@@ -50,10 +50,12 @@ setTimeout(function () {
     }, 10)
 }, 10)
 
-// let promise = new promise(function (resolve, reject) {
-//     resolve('hello')
-// })
-// promise.then(function (val) {
-
-// })
+let promise = new Promise(function (resolve, reject) {
+    resolve('hello')
+})
+promise.then(function (val) {
+    return "lagou"
+}).then(function (val) {
+    return "I LOVE YOU"
+})
 
