@@ -39,23 +39,28 @@
 // 8、谈谈你是如何理解JS异步编程的，Event Loop是做什么的，什么是宏任务，什么是微任务
 
 // 9、将下面异步代码使用Promise改进？
-setTimeout(function () {
-    var a = "hello"
-    setTimeout(function () {
-        var b = "lagou"
-        setTimeout (function () {
-            var c = "I LOVE U"
-            console.log(a + b + c)
-        }, 10)
-    }, 10)
-}, 10)
+// setTimeout(function () {
+//     var a = "hello"
+//     setTimeout(function () {
+//         var b = "lagou"
+//         setTimeout (function () {
+//             var c = "I ♥ U"
+//             console.log(a + b + c)
+//         }, 10)
+//     }, 10)
+// }, 10)
 
-let promise = new Promise(function (resolve, reject) {
-    resolve('hello')
-})
-promise.then(function (val) {
-    return "lagou"
-}).then(function (val) {
-    return "I LOVE YOU"
-})
+// new Promise(function (resolve, reject) {
+//     resolve('hello')
+// }).then(data => {
+//     return data + 'lagou'
+// }).then (data => {
+//     return data + 'I ♥ U'
+// }).then (data => {
+//     console.log(data)
+// })
+
+// 10、请简述TypeScript与JavaScript之间的关系？
+
+// 11、请谈谈你所认为的TypeScript优缺点？
 
