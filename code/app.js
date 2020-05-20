@@ -109,8 +109,20 @@
 // })
 
 // （2）参数默认值
-function foo(b, a=1) {
-    console.log(a)
-    console.log(b)
-}
-foo(8)
+// function foo(b, a=1) {
+//     console.log(a)
+//     console.log(b)
+// }
+// foo(8)
+
+// (3)Map
+const m = new Map()
+const tom = { name: 'ss' }
+m.set(tom, 90)
+console.log(m)
+console.log(m.get(tom))
+// foreach 遍历
+m.forEach((value, key) => {
+    console.log(value, 'value')
+    console.log(key, 'key')
+})
