@@ -116,13 +116,127 @@
 // foo(8)
 
 // (3)Map
-const m = new Map()
-const tom = { name: 'ss' }
-m.set(tom, 90)
-console.log(m)
-console.log(m.get(tom))
-// foreach 遍历
-m.forEach((value, key) => {
-    console.log(value, 'value')
-    console.log(key, 'key')
+// const m = new Map()
+// const tom = { name: 'ss' }
+// m.set(tom, 90)
+// console.log(m)
+// console.log(m.get(tom))
+// // foreach 遍历
+// m.forEach((value, key) => {
+//     console.log(value, 'value')
+//     console.log(key, 'key')
+// })
+
+// (4)Symbol定义对象的私有成员
+// [4.1] 定义Symbol属性
+// const obj = {}
+// obj[Symbol()] = '123'
+// obj[Symbol()] = '456'
+// console.log(obj, 'symbol属性')
+// [4.2] 计算属性名方式定义属性
+// const obj = {
+//     [Symbol()]: 123
+// }
+// console.log(obj)
+// [4.3] 定义私有属性成员
+// ************************ a.js ************************
+// const name = Symbol()
+// const person = {
+//     [name]: 'ss',
+//     say () {
+//         console.log(this[name])
+//     }
+// }
+// // *********************** b.js *************************
+// // 在外部文件中不能再创建一个完全相同的Symbol,所以获取不到person[Symbol()]属性 
+// // 在外部JS中只能调用普通属性成员
+// person.say()
+
+// (5)Symbol补充
+//  [5.1]唯一性
+// console.log(
+//     // Symbol() === Symbol()
+//     Symbol('ss') === Symbol('ss')
+// )
+// [5.2]Symbol.for()静态方法:方法接收字符串为参数
+// const s1 = Symbol.for('ss')
+// const s2 = Symbol.for('ss')
+// // 相同字符串，返回相同Symbol的值
+// console.log(s1 === s2, 'for方法')
+// // 【PS：for()方法维护的是Symbol与字符串的对应关系，如传入的不是string,那么会自动转为string】
+// console.log(Symbol.for(true) === Symbol.for('true'), '传的不是字符串')
+
+// (6)for---of循环
+const arr = [100, 200, 300, 400]
+// for (const item of arr) {
+//     console.log(item)
+// }
+// [6.1]for---of可以使用break终止循环
+// for (const item of arr) {
+//     console.log(item)
+//     if (item > 100) {
+//         break
+//     }
+// }
+// [6.2]set遍历
+// const s = new Set(['ss', 'ii'])
+// for (const item of s) {
+//     console.log(item, '循环set')
+// }
+// [6.3]map遍历
+// const m = new Map()
+// m.set('foo', '123')
+// m.set('bar', '345')
+// for (const item of m) {
+//     // 遍历map，得到的item为数组，其中包含键和值
+//     console.log(item)
+// }
+// // 通过解构来分别获取数组中的key属性名，与value属性值
+// for (const [key, value] of m) {
+//     console.log(key, 'key')
+//     console.log(value, 'value')
+// }
+
+// (7)Iterator迭代器
+// 新建set对象，并初始化值
+// const set = new Set(['foo', 'bar', 'baz'])
+// // 调用set对象的iterator方法，得到该对象的迭代器
+// const iterator = set[Symbol.iterator]()
+// // 通过迭代器中的next()方法去迭代set中的数据
+// console.log(iterator.next())
+// console.log(iterator.next())
+// console.log(iterator.next())
+// console.log(iterator.next())
+// console.log(iterator.next())
+// console.log(iterator.next())
+
+// (8)生成器函数Generator
+// 定义生成器函数就是在普通的函数前面添加*号
+// function * foo () {
+//     console.log('zce')
+//     return 100
+// }
+// const result = foo()
+// // console.log(result)打印出来的是生成器对象，打印结果：Object [Generator] {}
+// console.log(result.next()) 
+// // 打印结果：zce { value: 100, done: true }
+
+// （9）Promise
+// promise实例接收一个函数为参数，函数内部接收两个参数resolve,reject,两者都代表一个函数
+const promise = new Promise(function(resolve, reject){
+    // 就是将Promise的状态修改为fulfilled——成功，将异步任务的操作结果通过resolve的参数传递出去
+    resolve(100) 
+    // 就是将Promise状态改为rejected——失败，失败的参数传递的是一个错误的对象，用来表示为什么失败
+    // reject(new Error('promise rejected')) 
 })
+// 实例创建之后可以用then方法分别指定onfulfilled,onrejected函数,【then方法指定的回调函数会进入到回调队列中排队，等待同步任务执行完毕之后，再执行】
+// then方法的作用就是给状态明确的promise对象添加回调函数
+var promise2 = promise.then(function (value){
+    // 第一个参数成功之后的回调函数
+    console.log('resolved', value)
+}, function (error) {
+    console.log('rejected', error)
+})
+console.log('end')
+console.log(promise2, 'then方法返回的也是promise对象')
+// then方法会返回一个全新的Promise对象
