@@ -17,6 +17,7 @@ const promise = new Promise(function (resolve, reject) {
 // then 方法第一个参数就是 onFulfilled 回调函数
 // then 方法第二个参数就是 onRejected 失败回调函数
 // then 方法中的回调函数会进入回调队列进行排队：也就是必须等待同步代码执行完毕，才会执行
+
 promise.then(function (value) {
     console.log('resolved', value)
 }, function (error) {
